@@ -12,4 +12,6 @@ SIGHOME=${PWD}/sample-files docker-compose up
 ```
 
 ## Standalone
-
+```shell
+go install github.com/go-trader/gotaset@latest
+```
