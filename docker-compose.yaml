@@ -1,0 +1,25 @@
+version: "3.9" 
+services:
+  gotaset:
+    image: totomz84/gotaset
+    ports:
+      - "8080:8080"
+    command:
+      - gotaset
+      - -file=/data/signals_grafana.json
+    volumes:
+      - ${SIGHOME}:/data
+  grafana:
+    image: grafana/grafana-oss:8.3.1
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana:/var/lib/grafana
+    environment:
+      - GF_LOG_MODE=console
+      - GF_INSTALL_PLUGINS=simpod-json-datasource
+    links:
+      - gotaset
+
+volumes:
+  grafana: {}
